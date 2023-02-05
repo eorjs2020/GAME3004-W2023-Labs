@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Unity.AI.Navigation;
 
 public class WorldGenerator : MonoBehaviour
 {
     [Header("Player References")]
     public Transform player;
+    public Transform Enemy;
     public Transform spawnPoint;
 
     [Header("World Properties")]
@@ -152,7 +154,6 @@ public class WorldGenerator : MonoBehaviour
 
     private void ResetMap()
     {
-        var size = grid.Count;
 
         foreach (var tile in grid)
         {
@@ -222,6 +223,7 @@ public class WorldGenerator : MonoBehaviour
 
         meshFilter.mesh.CombineMeshes(combine);
         voxelParent.GetComponent<MeshCollider>().sharedMesh = meshFilter.sharedMesh;
+        voxelParent.GetComponent<NavMeshSurface>().BuildNavMesh();
     }
     private void PositionPlayer()
     {
@@ -229,6 +231,11 @@ public class WorldGenerator : MonoBehaviour
         player.position = new Vector3(width * 0.5f, height + 5.0f, depth * 0.5f);
         //spawnPoint.position = player.position;
         player.gameObject.GetComponent<CharacterController>().enabled = true;
+
+        Enemy.gameObject.GetComponent<EnemyBehaviour>().enabled = false;
+        Enemy.position = new Vector3(width * 0.5f, height + 1f, depth * 0.5f);
+        //spawnPoint.position = player.position;
+        Enemy.gameObject.GetComponent<EnemyBehaviour>().enabled = true;
     }
 
 

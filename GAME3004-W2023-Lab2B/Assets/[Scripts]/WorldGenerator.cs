@@ -224,6 +224,7 @@ public class WorldGenerator : MonoBehaviour
         meshFilter.mesh.CombineMeshes(combine);
         voxelParent.GetComponent<MeshCollider>().sharedMesh = meshFilter.sharedMesh;
         voxelParent.GetComponent<NavMeshSurface>().BuildNavMesh();
+        
     }
     private void PositionPlayer()
     {

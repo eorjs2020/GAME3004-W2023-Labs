@@ -140,7 +140,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &570532474
 Transform:
@@ -312,6 +312,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!4 &770643550 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7520402234800276885, guid: 3154dba1969d48240a8718146d0da89d,
+    type: 3}
+  m_PrefabInstance: {fileID: 7056078689976045927}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1813518884 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2429299469466272870, guid: 66d6b4c6136402842a70c1cd21ba3269,
@@ -363,7 +369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2115907593}
-  Enemy: {fileID: 0}
+  Enemy: {fileID: 770643550}
   spawnPoint: {fileID: 2115907593}
   height: 8
   width: 30

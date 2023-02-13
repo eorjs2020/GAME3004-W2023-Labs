@@ -246,8 +246,10 @@ public class WorldGenerator : MonoBehaviour
         Enemy.gameObject.GetComponent<NavMeshAgent>().enabled = true;
 
 
-        Coin.position = new Vector3(width * 0.5f, height + 5.0f, depth * 0.5f);
+        Coin.position = new Vector3(width, height + 4.5f, depth * 0.5f);
+        Coin.gameObject.GetComponentInChildren<coinScript>().startYPosition = height + 4.5f;
         Coin.gameObject.GetComponentInChildren<NavMeshObstacle>().enabled = true;
+        
     }
 
 

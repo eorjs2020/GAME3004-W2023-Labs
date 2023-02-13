@@ -18,6 +18,7 @@ public class PlayerBehaviour : MonoBehaviour
     public LayerMask groundMask;
     public bool isGrounded;
 
+    public Vector3 currentCheckPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -55,5 +56,14 @@ public class PlayerBehaviour : MonoBehaviour
     {
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireSphere(groundPoint.position, groundRadius);
+    }
+
+    public void Respawn()
+    {
+        velocity.y = 0f;
+        controller.enabled = false;
+        controller.transform.position = currentCheckPoint;
+        controller.enabled = true;
+        Debug.Log(currentCheckPoint);
     }
 }

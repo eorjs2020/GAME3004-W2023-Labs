@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 using Unity.AI.Navigation;
 
 public class WorldGenerator : MonoBehaviour
@@ -9,7 +10,9 @@ public class WorldGenerator : MonoBehaviour
     [Header("Player References")]
     public Transform player;
     public Transform Enemy;
-    public Transform spawnPoint;
+    public Vector3 spawnPoint;
+    public Transform Coin;
+    public DeathPlaneController deathPlane;
 
     [Header("World Properties")]
     [Range(8, 128)]
@@ -229,14 +232,22 @@ public class WorldGenerator : MonoBehaviour
     private void PositionPlayer()
     {
         player.gameObject.GetComponent<CharacterController>().enabled = false;
-        player.position = new Vector3(width * 0.5f, height + 5.0f, depth * 0.5f);
-        //spawnPoint.position = player.position;
+        player.position = new Vector3(width * 0.5f, height + 5.0f, depth * 0.5f);        
         player.gameObject.GetComponent<CharacterController>().enabled = true;
+        spawnPoint = player.position;
+        spawnPoint.y = 20f;
+        player.GetComponent <PlayerBehaviour>().currentCheckPoint = spawnPoint;
+
 
         Enemy.gameObject.GetComponent<EnemyBehaviour>().enabled = false;
         Enemy.position = new Vector3(width * 0.5f, height + 1f, depth * 0.5f);
         //spawnPoint.position = player.position;
         Enemy.gameObject.GetComponent<EnemyBehaviour>().enabled = true;
+        Enemy.gameObject.GetComponent<NavMeshAgent>().enabled = true;
+
+
+        Coin.position = new Vector3(width * 0.5f, height + 5.0f, depth * 0.5f);
+        Coin.gameObject.GetComponentInChildren<NavMeshObstacle>().enabled = true;
     }
 
 

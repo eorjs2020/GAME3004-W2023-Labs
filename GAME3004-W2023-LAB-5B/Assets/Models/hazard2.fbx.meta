@@ -1,8 +1,11 @@
 fileFormatVersion: 2
 guid: 05eeba5081ca01541976218c63a2de93
 ModelImporter:
-  serializedVersion: 22200
-  internalIDToNameTable: []
+  serializedVersion: 22103
+  internalIDToNameTable:
+  - first:
+      74: 2180698645379181427
+    second: Armature|Hazard-Clip
   externalObjects:
   - first:
       type: UnityEngine:Material

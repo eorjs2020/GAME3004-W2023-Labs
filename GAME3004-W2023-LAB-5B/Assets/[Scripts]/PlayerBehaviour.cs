@@ -17,12 +17,18 @@ public class PlayerBehaviour : MonoBehaviour
     public float groundRadius = 0.5f;
     public LayerMask groundMask;
     public bool isGrounded;
-
+    [Header("Controls")]
+    public Joystick leftStick;
+    public Joystick rightStick;
+    [Range(0.1f, 1.0f)]
+    public float verticalThreshold;
 
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        leftStick = GameObject.Find("LeftStick").GetComponent<Joystick>();
+       
     }
 
     // Update is called once per frame
@@ -35,10 +41,14 @@ public class PlayerBehaviour : MonoBehaviour
             velocity.y = -2.0f;
         }
 
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+        /*        float x = (Application.isMobilePlatform) ? leftStick.Horizontal : Input.GetAxis("Horizontal");
+                float z = (Application.isMobilePlatform) ? leftStick.Vertical : Input.GetAxis("Vertical");*/
 
-        Vector3 move = transform.right * x + transform.forward * z;
+        float x = leftStick.Horizontal;
+        float z = leftStick.Vertical; 
+
+
+         Vector3 move = transform.right * x + transform.forward * z;
         controller.Move(move * maxSpeed * Time.deltaTime);
 
         if (Input.GetButton("Jump") && isGrounded)
